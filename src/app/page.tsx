@@ -1,6 +1,7 @@
+import Home from '@/views/Home'
 import Image from 'next/image'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="bg-gray-100 h-1/1">
       <div className="container mx-auto p-4">
@@ -11,6 +12,7 @@ export default function Home() {
           This is a responsive text.
         </p>
       </div>
+      <Home />
     </main>
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
     //   <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">

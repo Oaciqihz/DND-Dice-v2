@@ -4,8 +4,8 @@ import Image from 'next/image'
 export default function HomePage() {
   return (
     // backgroundImage: "url(/assets/images/bg.jpg)",
-    <main className="bg-fixed bg-contain bg-no-repeat bg-center" style={{backgroundColor: "black"}} >
-      <div className="bg-current container mx-auto p-4 min-w-screen min-h-screen relative">
+    <main className="bg-main bg-fixed bg-contain bg-no-repeat bg-center">
+      <div className="bg-container container mx-auto p-4 min-w-screen min-h-screen relative">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl text-center">
           Hello, World!
         </h1>

@@ -19,11 +19,11 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         <div>
 
             {/* Dice List */}
-            <ul className="flex flex-row">
+            <ul className="flex flex-row justify-between">
                 {
                     diceNum.map(dice => (
-                        <li key={dice.sides} className="basis-1/4 hover:border-2">
-                            <DiceCard imageUrl={dice.imageUrl} />
+                        <li key={dice.sides}>
+                            <DiceCard imageUrl={dice.imageUrl} tabIndex={dice.sides} />
                         </li>
                     ))
                 }

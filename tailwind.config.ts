@@ -9,7 +9,10 @@ const config: Config = {
   theme: {
     colors: {
       // bg: "#7D8BAE"
-      current: "#7D8BAE"
+      main: "#000",
+      container: "#7D8BAE",
+      btn: "#fff",
+      btn_hover: "#000"
     },
     extend: {
       backgroundImage: {

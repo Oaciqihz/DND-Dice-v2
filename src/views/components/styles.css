@@ -1,0 +1,16 @@
+#dice-box {
+    /* width: 600px; */
+    height: 600px;
+    background-color: #fff;
+    /* background-image: url(/public/assets/woodgrain2.jpg);
+    background-size: cover; */
+}
+
+#dice-box canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.adv-roller{
+    display: none;
+}

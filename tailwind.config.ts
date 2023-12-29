@@ -2,11 +2,15 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/views/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    colors: {
+      // bg: "#7D8BAE"
+      current: "#7D8BAE"
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -26,7 +30,7 @@ const config: Config = {
         'xl': '1280px',
         // => @media (min-width: 1280px) { ... }
   
-        '2xl': '1536px',
+        '2xl': '1920px',
         // => @media (min-width: 1536px) { ... }
       }
     },

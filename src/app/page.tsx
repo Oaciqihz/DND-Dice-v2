@@ -3,16 +3,17 @@ import Image from 'next/image'
 
 export default function HomePage() {
   return (
-    <main className="bg-gray-100 h-1/1">
-      <div className="container mx-auto p-4">
+    // backgroundImage: "url(/assets/images/bg.jpg)",
+    <main className="bg-fixed bg-contain bg-no-repeat bg-center" style={{backgroundColor: "black"}} >
+      <div className="bg-current container mx-auto p-4 min-w-screen min-h-screen relative">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl text-center">
           Hello, World!
         </h1>
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-center mt-4">
           This is a responsive text.
         </p>
+        <Home />
       </div>
-      <Home />
     </main>
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
     //   <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">

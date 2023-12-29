@@ -6,7 +6,9 @@ const Home: React.FC<React.PropsWithChildren> = () => {
 
     return (
         <div>
-            <h1>Home</h1>
+            <ul className="dice-list">
+                
+            </ul>
             <Dice />
         </div>
     )

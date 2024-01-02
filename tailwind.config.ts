@@ -12,7 +12,8 @@ const config: Config = {
       main: "#000",
       container: "#7D8BAE",
       btn: "#fff",
-      btn_hover: "#000"
+      btn_hover: "#000",
+      text_bg: "rgb(148 163 184)"
     },
     extend: {
       backgroundImage: {

@@ -7,12 +7,16 @@ import AdvancedRoller from "@3d-dice/fui/src/advancedRoller";
 import { useEffect, useState } from "react";
 import "./styles.css";
 
-const Dice = () => {
+const Dice = ({
+    rollDiceList,
+}: {
+    rollDiceList: Array<string> | undefined;
+}) => {
     let [diceBox, setDiceBox] = useState<any>();
 
     function roll() {
         diceBox.clear();
-        diceBox.roll(["2d6", "1d4"])
+        diceBox.roll(rollDiceList)
         .then((res: any) => {
             console.log(res);
         })

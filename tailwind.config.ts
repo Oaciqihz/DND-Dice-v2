@@ -11,15 +11,17 @@ const config: Config = {
       // bg: "#7D8BAE"
       main: "#000",
       container: "#7D8BAE",
-      btn: "#fff",
+      btn: "#9AC1F0",
       btn_hover: "#000",
-      text_bg: "rgb(148 163 184)"
+      text_bg: "rgb(148 163 184)",
+      normal: "#9AC1F0",
+      advantage: "#69db7c",
+      disadvantage: "#fa5252",
     },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       screens: {
         'sm': '640px',

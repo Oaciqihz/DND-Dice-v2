@@ -7,19 +7,31 @@ import AdvancedRoller from "@3d-dice/fui/src/advancedRoller";
 import { useEffect, useState } from "react";
 import "./styles.css";
 
+type diceBonus = {
+    sides: number,
+    num: number,
+    imageUrl: string,
+    status: string
+}
+
 const Dice = ({
     rollDiceList,
+    rollDiceBonusList
 }: {
     rollDiceList: Array<string> | undefined;
+    rollDiceBonusList: diceBonus
 }) => {
     let [diceBox, setDiceBox] = useState<any>();
 
     function addDice() {
-        diceBox.add(["1d20"], {themeColor: "#DC143C"})
+        diceBox.add([`${rollDiceBonusList.num}d${rollDiceBonusList.sides}`], {newStartPoint: true, themeColor: rollDiceBonusList.status === "adv" ? "#2e8555" : "#DC143C"})
     }
 
     function roll() {
         diceBox.clear();
+        if (rollDiceBonusList.num !== 0) {
+            addDice()
+        }
         diceBox.roll(rollDiceList)
         .then((res: any) => {
             console.log(res);
@@ -70,8 +82,6 @@ const Dice = ({
                     onClear: () => {
                         diceBox.clear();
                         Display.clear();
-                        console.log("===>");
-                        
                     },
                     onReroll: (rolls: any) => {
                         // loop through parsed roll notations and send them to the diceBox

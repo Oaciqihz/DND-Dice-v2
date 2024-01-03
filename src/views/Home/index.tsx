@@ -24,6 +24,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
     const [selectDice, setSelectDice] = useState<number|null>(null);
     const [rollDiceStr, setRollDiceStr] = useState<string>();
     let [rollDiceList, setRollDiceList] = useState<string[]>()
+    let [diceBonusIndex, setDiceBonusIndex] = useState<number>(0);
     let [diceBonusNum, setDiceBonusNum] = useState<diceBonus>({ sides: 0, num: 0, imageUrl: "", status: "" })
     let [diceNum, setDiceNum] = useState<dice[]>([]);
 
@@ -38,6 +39,28 @@ const Home: React.FC<React.PropsWithChildren> = () => {
     // 奖励骰类型 ? 优势 : 劣势
     function changeBonusStatus(status: string) {
         diceBonusNum.status = status;
+        setDiceBonusNum({...diceBonusNum});
+        changeDiceString();
+    }
+
+    // 奖励骰面
+    function changeDiceType(type: string) {
+        switch (type) {
+            case "add":
+                diceBonusIndex = diceBonusIndex+1 > DICES.length - 1 ? 0 : diceBonusIndex+1;
+                setDiceBonusIndex(diceBonusIndex)
+                break;
+            case "reduce":
+                diceBonusIndex = diceBonusIndex-1 < 0 ? DICES.length - 1 : diceBonusIndex-1;
+                setDiceBonusIndex(diceBonusIndex)
+                break;
+            default:
+                break;
+        }
+        diceBonusNum = {
+            ...diceBonusNum,
+            ...DICES[diceBonusIndex],
+        }
         setDiceBonusNum({...diceBonusNum});
         changeDiceString();
     }
@@ -92,7 +115,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
         setDiceNum([...diceNum]);
 
         diceBonusNum = {
-            ...DICES[0],
+            ...DICES[diceBonusIndex],
             num: 0,
             status: "adv"
         }
@@ -139,10 +162,11 @@ const Home: React.FC<React.PropsWithChildren> = () => {
                             changeDiceNum={changeDiceNum}
                             clearSelectDice={clearSelectDice}
                             setBonusStatus={changeBonusStatus}
+                            changeDiceType={changeDiceType}
                         />
                     </li>
             </ul>
-            <Dice rollDiceList={rollDiceList} />
+            <Dice rollDiceList={rollDiceList} rollDiceBonusList={diceBonusNum} />
         </div>
     )
 }

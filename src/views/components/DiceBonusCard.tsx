@@ -8,7 +8,8 @@ export default function DiceBonusCard({
     bonusStatus,
     changeDiceNum,
     clearSelectDice,
-    setBonusStatus
+    setBonusStatus,
+    changeDiceType
 }: {
     imageUrl: string;
     tabIndex: number;
@@ -17,6 +18,7 @@ export default function DiceBonusCard({
     changeDiceNum: Function;
     clearSelectDice: Function;
     setBonusStatus: Function;
+    changeDiceType: Function
 }) {
 
     const boxRef = useRef<HTMLDivElement>(null);
@@ -58,14 +60,19 @@ export default function DiceBonusCard({
             ref={boxRef}
         >
             {/* <div className="size-40"></div> */}
-            <Image
-                src={imageUrl}
-                className={`${bonusStatus === "adv" ? "bg-advantage" : bonusStatus === "unadv" ? "bg-disadvantage" : ""} cursor-pointer`}
-                alt="dice"
-                width={100}
-                height={100}
-                priority
-            />
+            <div className="flex flex-row w-full justify-between">
+                <button onClick={() => changeDiceType("reduce")}>&lt;</button>
+                <Image
+                    src={imageUrl}
+                    className={`${bonusStatus === "adv" ? "bg-advantage" : bonusStatus === "unadv" ? "bg-disadvantage" : ""} cursor-pointer`}
+                    alt="dice"
+                    width={100}
+                    height={100}
+                    priority
+                />
+                <button onClick={() => changeDiceType("add")}>&gt;</button>
+            </div>
+
             {/* Dice btns */}
             {/* {showButton && ( */}
                 <div className="w-full flex flex-row justify-around">

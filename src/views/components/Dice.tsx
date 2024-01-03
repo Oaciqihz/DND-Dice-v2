@@ -14,6 +14,11 @@ type diceBonus = {
     status: string
 }
 
+type total = {
+    adv: string,
+    unadv: string
+}
+
 const Dice = ({
     rollDiceList,
     rollDiceBonusList
@@ -22,19 +27,22 @@ const Dice = ({
     rollDiceBonusList: diceBonus
 }) => {
     let [diceBox, setDiceBox] = useState<any>();
+    let [totalPoints, setTotalPoints] = useState<total|null>();
 
     function addDice() {
         diceBox.add([`${rollDiceBonusList.num}d${rollDiceBonusList.sides}`], {newStartPoint: true, themeColor: rollDiceBonusList.status === "adv" ? "#2e8555" : "#DC143C"})
     }
 
     function roll() {
+        totalPoints = null;
+        setTotalPoints(totalPoints);
         diceBox.clear();
         if (rollDiceBonusList.num !== 0) {
             addDice()
         }
         diceBox.roll(rollDiceList)
         .then((res: any) => {
-            console.log(res);
+            // console.log(res);
         })
     }
 
@@ -90,7 +98,28 @@ const Dice = ({
                         );
                     },
                     onResults: (results: any) => {
-                        Display.showResults(results);
+                        // Display.showResults(results);
+                        let str = "";
+                        let bonusStr = "";
+                        results.forEach((dices: any) => {
+                            const {rolls} = dices;
+                            // 过滤是否是劣势骰
+                            rolls.forEach((dice: any) => {
+                                // 劣势
+                                if (dice.themeColor === "#DC143C") {
+                                    bonusStr = `-${dice.value}`;
+                                }else{
+                                    str = str + `+${dice.value}`;
+                                }
+                            });
+                        });
+                        // TODO: show 总计
+                        str = str.slice(1);
+                        totalPoints = {
+                            adv: str,
+                            unadv: bonusStr
+                        };
+                        setTotalPoints({...totalPoints});
                     },
                 });
     
@@ -105,6 +134,17 @@ const Dice = ({
     return (
         <div>
             <div id="dice-box">
+                {/* 得分 */}
+                {
+                    totalPoints &&
+                    <div className="displayResults">
+                        <div className="results showEffect" style={{transition: "all 500ms ease 0s"}}>
+                            <span className="text-advantage">{totalPoints.adv}</span>
+                            <span className="text-disadvantage">{totalPoints.unadv}</span>
+                            ={eval(totalPoints.adv + totalPoints.unadv)}
+                        </div>
+                    </div>
+                }
                 <button 
                     onClick={roll}
                     disabled={!rollDiceList || rollDiceList.length === 0}

@@ -15,8 +15,8 @@ const config: Config = {
       btn_hover: "#000",
       text_bg: "rgb(148 163 184)",
       normal: "#9AC1F0",
-      advantage: "#69db7c",
-      disadvantage: "#fa5252",
+      advantage: "#2e8555",
+      disadvantage: "#DC143C",
     },
     extend: {
       backgroundImage: {
